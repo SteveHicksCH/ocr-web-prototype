@@ -1,20 +1,21 @@
-# OCR WE
+# OCR WEB Prototype
 
 ## Overview
 
-The aim of this template is to give you a head start in setting up a new web application for Companies House.
+This web app allows you to upload a TIFF file and get it converted to text (via the `ocr-api`)
 
-The template uses [Express](https://expressjs.com), [TypeScript](https://typescriptlang.org) and the [GovUK Frontend](https://github.com/alphagov/govuk-frontend) toolkit to set up a simple example of a web application that runs on NodeJS.
+This Node.js application is based on the [Node Web Starter](https://github.com/companieshouse/node-web-starter) template and uses:
 
-**You can create a new project from this template by clicking the [Use this template](https://github.com/companieshouse/node-web-starter/generate) button.**
+- [Express](https://expressjs.com),
+- [TypeScript](https://typescriptlang.org),
+- [GovUK Frontend](https://github.com/alphagov/govuk-frontend).
 
 ## Contents
 
-- [OCR WE](#ocr-we)
+- [OCR WEB Prototype](#ocr-web-prototype)
   - [Overview](#overview)
   - [Contents](#contents)
     - [Quick start](#quick-start)
-    - [Prerequisites](#prerequisites)
     - [Running the server](#running-the-server)
     - [Static assets](#static-assets)
     - [Compiling the application](#compiling-the-application)
@@ -23,40 +24,27 @@ The template uses [Express](https://expressjs.com), [TypeScript](https://typescr
 
 ### Quick start
 
-If you are familiar with NodeJS development and already have it installed, simply run the `init` make task
+Install the dependencies
 
-    make init
-    
+  `make init`
+
 And then start the application
-    
-    npm start
-    
+
+  `npm start`
+
 Then go to [http://localhost:3000](http://localhost:3000).
 
-### Prerequisites
-
-You are going to need a few things to begin. Firstly, NodeJS. There are a few ways to install it.
-
-- [Official installer](https://nodejs.org/en/)
-- [Node Version Manager](https://github.com/nvm-sh/nvm)
-- [Homebrew](https://formulae.brew.sh/formula/node)
-
-Node version manager allows you to install multiple versions side by side on the host machine.
-
-Once you have that installed, you will need to install the dependencies (locally) and [GulpJS](https://gulpjs.com) (globally). This task runner is used to compile the [Sass](https://sass-lang.com) used in the GovUK Frontend.
-
-    npm i
-    npm install gulp-cli -g
-    
 ### Running the server
 
 There are two ways to run the server in development. You run it in normal mode;
 
-    npm start
-    
-Or, automatically reload the server once you make changes to source code;
+  `npm start`
 
-    npm start:watch
+Update following (get nodemon working)
+
+Or, automatically reload the server once you make changes to source code (this uses `nodemon`);
+
+  `npm start:watch`
 
 ### Static assets
 
