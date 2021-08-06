@@ -44,32 +44,32 @@ Update following (get nodemon working)
 
 Or, automatically reload the server once you make changes to source code (this uses `nodemon`);
 
-  `npm start:watch`
+  `npm run start:watch`
 
 ### Static assets
 
 Sass is used to compile the css from GovUK Frontend. The `static` gulp task will build the necessary files and output them to the [dist](./dist) folder.
 
-    gulp static
-    
+  `gulp static`
+
 During development, static assets are served from this folder using the url prefix `/static`.
 
 ### Compiling the application
 
 TypeScript compiles down the JavaScript code that eventually gets run via NodeJS. The `build` npm task will write the JavaScript to the [dist](./dist) folder.
 
-    npm run build
-    
+  `npm run build`
+
 **It is this code that gets run in production.**
 
 ### Linting
 
 [TSLint](https://palantir.github.io/tslint/) is used to perform static analysis on code style.
 
-    npm run lint
+  `npm run lint`
 
 ### Testing
 
 Tests can be found in the directory [src/test](./src/test). The framework used is [Jest](https://jestjs.io) along with [Supertest](https://github.com/visionmedia/supertest) to dispatch handlers that can have assertions made against the responses. Execute the following to run the tests;
 
-    npm t
+  `npm t`
