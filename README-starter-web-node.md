@@ -1,4 +1,4 @@
-# OCR WE
+# Web Starter NodeJS
 
 ## Overview
 
@@ -10,7 +10,7 @@ The template uses [Express](https://expressjs.com), [TypeScript](https://typescr
 
 ## Contents
 
-- [OCR WE](#ocr-we)
+- [Web Starter NodeJS](#web-starter-nodejs)
   - [Overview](#overview)
   - [Contents](#contents)
     - [Quick start](#quick-start)
