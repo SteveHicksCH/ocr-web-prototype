@@ -1,9 +1,8 @@
 import {Router} from "express";
-import {homeHandler} from "../handlers";
+import {OcrController} from "../controllers/OcrController";
 
-// a router is a collection of routes that can have their own middleware chain. It is helpful to create routers for
-// a collection of related routes for better organisation and specific logic.
 const router = Router();
-router.get("/", homeHandler);
+const ocrController = new OcrController();
+router.get("/", ocrController.renderView);
 
 export default router;

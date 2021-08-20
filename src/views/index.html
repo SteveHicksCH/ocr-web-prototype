@@ -1,5 +1,28 @@
 {% extends "base.html" %}
 
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% block pageTitle %}
+  Convert TIFF file to text
+{% endblock %}
+
 {% block content %}
-<h1 class="govuk-heading-xl">Convert TIFF file to text</h1>
+    <h3 class="govuk-heading-xl">Upload TIFF file</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+          text: "Upload a file"
+          }
+    }) }}
+
+        {{ govukButton({
+          text: "Convert To Text"
+        }) }}
+
+    </form>
+
 {% endblock %}
