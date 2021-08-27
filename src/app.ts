@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as nunjucks from "nunjucks";
 import * as path from "path";
+
 import router from "./routers";
 
 const app = express();
@@ -36,5 +37,7 @@ if (process.env.NODE_ENV === "development") {
 }
 // apply our default router to /
 app.use("/", router);
+
+
 
 export default app;

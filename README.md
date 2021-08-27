@@ -40,7 +40,7 @@ There are two ways to run the server in development. You run it in normal mode;
 
   `npm start`
 
-Update following (get nodemon working)
+Update following (get `nodemon` working)
 
 Or, automatically reload the server once you make changes to source code (this uses `nodemon`);
 
@@ -48,7 +48,7 @@ Or, automatically reload the server once you make changes to source code (this u
 
 ### Static assets
 
-Sass is used to compile the css from GovUK Frontend. The `static` gulp task will build the necessary files and output them to the [dist](./dist) folder.
+Sass is used to compile the css from GovUK Frontend. The `static` gulp task will build the necessary files and output them to the [`dist`](./dist) folder.
 
   `gulp static`
 
@@ -56,7 +56,7 @@ During development, static assets are served from this folder using the url pref
 
 ### Compiling the application
 
-TypeScript compiles down the JavaScript code that eventually gets run via NodeJS. The `build` npm task will write the JavaScript to the [dist](./dist) folder.
+TypeScript compiles down the JavaScript code that eventually gets run via NodeJS. The `build` npm task will write the JavaScript to the [`dist`](./dist) folder.
 
   `npm run build`
 
@@ -70,6 +70,6 @@ TypeScript compiles down the JavaScript code that eventually gets run via NodeJS
 
 ### Testing
 
-Tests can be found in the directory [src/test](./src/test). The framework used is [Jest](https://jestjs.io) along with [Supertest](https://github.com/visionmedia/supertest) to dispatch handlers that can have assertions made against the responses. Execute the following to run the tests;
+Tests can be found in the directory [src/test](./src/test). The framework used is [Jest](https://jestjs.io) along with [`Supertest`](https://github.com/visionmedia/supertest) to dispatch handlers that can have assertions made against the responses. Execute the following to run the tests;
 
   `npm t`

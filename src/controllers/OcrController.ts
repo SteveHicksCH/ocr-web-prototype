@@ -7,4 +7,11 @@ export class OcrController {
         res.render("index");
       };
 
+      public upload = (req: Request, res: Response) => {
+        console.log("uploading file");
+        console.log(req.body);
+        res.render("index");
+      };
+
+
 }
