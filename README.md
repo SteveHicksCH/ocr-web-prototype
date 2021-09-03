@@ -21,6 +21,7 @@ This Node.js application is based on the [Node Web Starter](https://github.com/c
     - [Compiling the application](#compiling-the-application)
     - [Linting](#linting)
     - [Testing](#testing)
+  - [File Upload](#file-upload)
 
 ### Quick start
 
@@ -73,3 +74,7 @@ TypeScript compiles down the JavaScript code that eventually gets run via NodeJS
 Tests can be found in the directory [src/test](./src/test). The framework used is [Jest](https://jestjs.io) along with [`Supertest`](https://github.com/visionmedia/supertest) to dispatch handlers that can have assertions made against the responses. Execute the following to run the tests;
 
   `npm t`
+
+## File Upload
+
+This is done using the `Multer` library (which is used within the Router since we only want it for one particular route).

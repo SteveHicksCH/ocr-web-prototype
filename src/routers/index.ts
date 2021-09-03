@@ -11,12 +11,6 @@ const upload = multer({ storage: storage });
 
 router.get("/", ocrController.renderView);
 
-router.post('/upload', upload.single('file-upload-1'), function (req, res) {
-    console.log("uploading file");
-    console.log(req.file);
-    res.render("index");
-  })
+router.post('/upload', upload.single('file-upload-1'), ocrController.upload);
   
-//router.post("/upload", ocrController.upload);
-
 export default router;

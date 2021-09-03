@@ -8,8 +8,8 @@ export class OcrController {
       };
 
       public upload = (req: Request, res: Response) => {
-        console.log("uploading file");
-        console.log(req.body);
+        console.log("controller uploading file");
+        console.log(req.file);
         res.render("index");
       };
 
