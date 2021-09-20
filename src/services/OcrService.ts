@@ -1,5 +1,6 @@
 import  ExtractTextResultDto from "../models/ExtractTextResultDto"
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import FormData = require('form-data');
 
 
 export class OcrService {
@@ -12,23 +13,24 @@ export class OcrService {
     }
 
     public async imageToText(uploadedFile: Express.Multer.File | undefined): Promise<ExtractTextResultDto> {
+        const filename =  uploadedFile?.originalname ?? "unknown-filename";
         console.log("Service class uploading file");
-        console.log(uploadedFile);
+        console.log("filename" + uploadedFile);
         console.log("Using ocr-api at [" + this.uri + "]");
 
-        const headers = {
-            'Content-Type': 'multipart/form-data'
-          }
+        const formData = new FormData();
+        formData.append('responseId', filename);
+        formData.append('contextId', 'ocr-web-' + filename);
+        formData.append('file', uploadedFile?.buffer, filename);    
+        const formHeaders = formData.getHeaders();
 
         const results: ExtractTextResultDto = await this.axiosInstance
-        .post(this.uri, {
-            file: uploadedFile?.buffer,
-            responseId: "ocr-web response id",
-            contextId: "ocr-web context id"
-        }, {
-            headers: headers
-        });
-        console.log("service class converted text" + results.extracted_text);
+        .post(this.uri, formData, {
+            headers: {
+              ...formHeaders,
+            }});
+
+        console.log("service class converted text[" + results.extracted_text + "]");
 
         return results;
     }
