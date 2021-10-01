@@ -26,6 +26,11 @@ export class OcrService {
         console.log("Sending post request " + new Date().toLocaleTimeString());
         let results: ExtractTextResultDto = {
             extracted_text: "",
+            average_confidence_score: 0,
+            lowest_confidence_score:0,
+            ocr_processing_time_ms: 0,
+            total_processing_time_ms: 0,
+            response_id: "",
             result_code: 1
         };
         await this.axiosInstance.post(this.uri, formData, {
@@ -33,10 +38,8 @@ export class OcrService {
               ...formHeaders,
             }})
         .then((response) => {
-            console.log(response);
             results = response.data;
             console.log("Completed post request " + new Date().toLocaleTimeString());
-            console.log("service class converted text[" + results.extracted_text + "]"); 
             return results;
         }, (error) => {
             console.log("Completed post request (ERRORS) " + new Date().toLocaleTimeString());
@@ -44,6 +47,7 @@ export class OcrService {
     
         })
         
+
         return results;
 
     }

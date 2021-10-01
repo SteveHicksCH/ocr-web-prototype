@@ -1,4 +1,5 @@
 import {Request, Response} from "express";
+import e = require("express");
 import { OcrService } from "services/OcrService";
 
 export class OcrController {
@@ -15,12 +16,20 @@ export class OcrController {
       };
 
       public upload = async (req: Request, res: Response) => {
-        console.log("controller uploading file");
+        console.log("controller uploading file ");
         console.log(req.file);
 
+        const filename = req.file?.originalname ?? "Unknown";
+
         const results = await this.ocrService.imageToText(req.file);
-        console.log("converted text from service [" + results.extracted_text + "]");
-        res.render("index");
+        console.log("average confidence level [" + results.average_confidence_score + "] ");
+
+        console.log("result " + results.result_code);
+        if (results.result_code == 0) {
+            res.render("converted-text", {results: results, filename: filename});
+        } else {
+          res.render("error", {results: results, filename: filename});
+        }
       };
 
 

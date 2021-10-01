@@ -1,0 +1,22 @@
+{% extends "base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% block pageTitle %}
+  Error
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/" + urlPrefix
+  }) }}
+{% endblock %}
+
+{% block content %}
+    <h3 class="govuk-heading-xl">Error in converting text{{filename}}</h1>
+
+Error Code: {{ results.result_code  }}
+
+
+{% endblock %}

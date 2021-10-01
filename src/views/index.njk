@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.njk" %}
 
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
@@ -15,7 +15,7 @@
           id: "file-upload-1",
           name: "file-upload-1",
           label: {
-          text: "Upload a file"
+          text: "Upload a file (warning - a 500k file takes just over a minute) "
           }
     }) }}
 

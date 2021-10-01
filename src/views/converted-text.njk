@@ -1,0 +1,54 @@
+{% extends "base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% block pageTitle %}
+  Converted Text
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/" + urlPrefix
+  }) }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="govuk-heading-xl">File converted to Text</h1>
+
+    <h3 class="govuk-heading-m">File metadata</h3>
+
+      {{
+        govukSummaryList({
+          classes: 'govuk-!-margin-bottom-9',
+          rows: [
+            {
+              key: { text: 'Uploaded Filename' },
+              value: { html: filename }
+            },
+            {
+              key: { text: 'Time Taken to Convert Text (seconds)' },
+              value: { text: (results.ocr_processing_time_ms / 1000) | round | string}
+            },
+            {
+              key: { text: 'Total Time in Remote OCR API  (seconds)' },
+              value: { text: (results.total_processing_time_ms  / 1000) | round | string}
+            },
+            {
+              key: { text: 'Average Confidence' },
+              value: { text: results.average_confidence_score | string}
+            },
+             {
+              key: { text: 'Lowest Confidence' },
+              value: { text: results.lowest_confidence_score | string}
+            }           
+          ]
+        })
+      }}
+
+ <h3 class="govuk-heading-m">Converted text</h3>
+
+{{ results.extracted_text | striptags(true) | escape | nl2br  }}
+
+
+{% endblock %}

@@ -21,10 +21,10 @@ const env = nunjucks.configure([
 ], {
   autoescape: true,
   express: app,
-});
+}).addGlobal("urlPrefix", "");
 
 app.set("views", viewPath);
-app.set("view engine", "html");
+app.set("view engine", "njk");
 
 // add global variables to all templates
 env.addGlobal("PIWIK_URL", "https://example.com");
