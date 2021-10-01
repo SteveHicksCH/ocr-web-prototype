@@ -19,7 +19,7 @@ export class OcrController {
         console.log(req.file);
 
         const results = await this.ocrService.imageToText(req.file);
-        console.log("converted text [" + results.extracted_text + "]");
+        console.log("converted text from service [" + results.extracted_text + "]");
         res.render("index");
       };
 

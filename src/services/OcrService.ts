@@ -2,7 +2,6 @@ import  ExtractTextResultDto from "../models/ExtractTextResultDto"
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import FormData = require('form-data');
 
-
 export class OcrService {
 
     private readonly axiosInstance: AxiosInstance;
@@ -24,15 +23,29 @@ export class OcrService {
         formData.append('file', uploadedFile?.buffer, filename);    
         const formHeaders = formData.getHeaders();
 
-        const results: ExtractTextResultDto = await this.axiosInstance
-        .post(this.uri, formData, {
+        console.log("Sending post request " + new Date().toLocaleTimeString());
+        let results: ExtractTextResultDto = {
+            extracted_text: "",
+            result_code: 1
+        };
+        await this.axiosInstance.post(this.uri, formData, {
             headers: {
               ...formHeaders,
-            }});
-
-        console.log("service class converted text[" + results.extracted_text + "]");
-
+            }})
+        .then((response) => {
+            console.log(response);
+            results = response.data;
+            console.log("Completed post request " + new Date().toLocaleTimeString());
+            console.log("service class converted text[" + results.extracted_text + "]"); 
+            return results;
+        }, (error) => {
+            console.log("Completed post request (ERRORS) " + new Date().toLocaleTimeString());
+            console.log(error);
+    
+        })
+        
         return results;
+
     }
 
 }
