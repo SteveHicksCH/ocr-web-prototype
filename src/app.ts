@@ -1,7 +1,8 @@
 import * as express from "express";
 import * as nunjucks from "nunjucks";
 import * as path from "path";
-import router from "./routers";
+
+import router from "./routers/routes";
 
 const app = express();
 
@@ -20,10 +21,10 @@ const env = nunjucks.configure([
 ], {
   autoescape: true,
   express: app,
-});
+}).addGlobal("urlPrefix", "");
 
 app.set("views", viewPath);
-app.set("view engine", "html");
+app.set("view engine", "njk");
 
 // add global variables to all templates
 env.addGlobal("PIWIK_URL", "https://example.com");
@@ -36,5 +37,7 @@ if (process.env.NODE_ENV === "development") {
 }
 // apply our default router to /
 app.use("/", router);
+
+
 
 export default app;

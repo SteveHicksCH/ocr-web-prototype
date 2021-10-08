@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+{% block pageTitle %}
+  Convert TIFF file to text
+{% endblock %}
+
+{% block content %}
+    <h3 class="govuk-heading-xl">Upload TIFF file</h1>
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+
+        {{ govukFileUpload({
+          id: "file-upload-1",
+          name: "file-upload-1",
+          label: {
+          text: "Upload a file (warning - a 500k file takes just over a minute) "
+          }
+    }) }}
+
+        {{ govukButton({
+          text: "Convert To Text"
+        }) }}
+
+    </form>
+
+{% endblock %}
