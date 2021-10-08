@@ -7,6 +7,7 @@ This web app allows you to upload a TIFF file and get it converted to text (via 
 This Node.js application is based on the [Node Web Starter](https://github.com/companieshouse/node-web-starter) template and uses:
 
 - [Express](https://expressjs.com),
+- [Multer](https://expressjs.com/en/resources/middleware/multer.html) - file upload middleware,
 - [TypeScript](https://typescriptlang.org),
 - [GovUK Frontend](https://github.com/alphagov/govuk-frontend).
 
@@ -81,9 +82,8 @@ This is done using the `Multer` library (which is used within the Router since w
 
 Stuff todo
 
-1. How to structure use of `Multer`
-2. Validation of file size
-3. Validation of file type
-4. Error handler (as suppression_web)
-5. General review against other projects
-6. Jess tests
+1. Validation of file size
+2. Error handler to display informative message to the user
+3. General review against other projects
+4. Limit number of concurrent file uploads (don't want to bog down OCR server)
+5. Jess tests
