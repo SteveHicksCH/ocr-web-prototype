@@ -45,7 +45,7 @@ Update following (get `nodemon` working)
 
 Or, automatically reload the server once you make changes to source code (this uses `nodemon`);
 
-  `npm run start:watch`
+  `npm run dev`
 
 ### Static assets
 
@@ -78,3 +78,12 @@ Tests can be found in the directory [src/test](./src/test). The framework used i
 ## File Upload
 
 This is done using the `Multer` library (which is used within the Router since we only want it for one particular route).
+
+Stuff todo
+
+1. How to structure use of `Multer`
+2. Validation of file size
+3. Validation of file type
+4. Error handler (as suppression_web)
+5. General review against other projects
+6. Jess tests
