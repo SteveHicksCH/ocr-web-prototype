@@ -2,6 +2,7 @@ import * as express from "express";
 import * as nunjucks from "nunjucks";
 import * as path from "path";
 
+import { errorHandler } from './middleware/ErrorHandler';
 import router from "./routers/routes";
 
 const app = express();
@@ -35,9 +36,10 @@ if (process.env.NODE_ENV === "development") {
   app.use("/static", express.static("dist/static"));
   env.addGlobal("CSS_URL", "/static/app.css");
 }
+
 // apply our default router to /
 app.use("/", router);
 
-
+app.use(errorHandler);
 
 export default app;
