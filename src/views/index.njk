@@ -9,6 +9,14 @@
 
 {% block content %}
     <h3 class="govuk-heading-xl">Upload TIFF file</h1>
+
+     {%if errors.length %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errors
+        }) }}
+      {% endif %}
+
     <form method="POST" action="/upload" enctype="multipart/form-data">
 
         {{ govukFileUpload({
