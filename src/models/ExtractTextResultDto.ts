@@ -9,6 +9,7 @@ interface ExtractTextResultDto {
     total_processing_time_ms: number;
     response_id: string;
     result_code: number;
+    web_error_message?:string;
 }
 
 export default ExtractTextResultDto;

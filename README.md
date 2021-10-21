@@ -17,12 +17,13 @@ This Node.js application is based on the [Node Web Starter](https://github.com/c
   - [Overview](#overview)
   - [Contents](#contents)
     - [Quick start](#quick-start)
+    - [Environment Variables](#environment-variables)
     - [Running the server](#running-the-server)
     - [Static assets](#static-assets)
     - [Compiling the application](#compiling-the-application)
     - [Linting](#linting)
     - [Testing](#testing)
-  - [File Upload](#file-upload)
+    - [File Upload](#file-upload)
 
 ### Quick start
 
@@ -30,11 +31,23 @@ Install the dependencies
 
   `make init`
 
+If running behind a proxy server and using an OCR API in AWS - make sure that you do NOT have anything in your PROXY environmental variables
+
 And then start the application
 
   `npm start`
 
 Then go to [http://localhost:3000](http://localhost:3000).
+
+### Environment Variables
+
+The following is a list of mandatory environment variables for the service to run:
+
+Name                                        | Description                                                               | Example Value
+------------------------------------------- | ------------------------------------------------------------------------- | ------------------------
+OCR_REQUEST_TIMEOUT_SECONDS                 | Timeout in seconds when calling the OCR API                               | 300
+OCR_API_BASE_URL                            | URL to Restricted Word Api                                                | `http://localhost:8080`
+
 
 ### Running the server
 
@@ -76,7 +89,7 @@ Tests can be found in the directory [src/test](./src/test). The framework used i
 
   `npm t`
 
-## File Upload
+### File Upload
 
 This is done using the `Multer` library (which is used within the Router since we only want it for one particular route).
 

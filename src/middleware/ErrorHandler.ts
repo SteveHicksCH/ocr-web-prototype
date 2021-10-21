@@ -14,6 +14,18 @@ export function errorHandler(err: any, req: Request, res: Response, next: NextFu
     ]
     res.status(err.statusCode).render('index', {errors: errorList});
 
+  } else if ( err.code === 'LIMIT_FILE_SIZE') {
+  
+    console.log("File Size limit exceed. From Framework ", err.message, err.code, err.statusCode);
+
+    const errorList = [
+     {
+       text: "The selected file must be smaller than 2MB",
+       href: "#file-upload-1"
+     }
+   ]
+   res.status(StatusCodes.BAD_REQUEST).render('index', {errors: errorList});
+
   } else {
      if (!err.statusCode) {
          err.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;

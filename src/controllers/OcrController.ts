@@ -1,6 +1,7 @@
-import {Request, Response} from "express";
+import {NextFunction, Request, Response} from "express";
 import e = require("express");
 import { OcrService } from "services/OcrService";
+import {FileUploadError} from "../utils/FileUploadError";
 
 export class OcrController {
 
@@ -15,8 +16,13 @@ export class OcrController {
         res.render("index");
       };
 
-      public upload = async (req: Request, res: Response) => {
+      public upload = async (req: Request, res: Response, next: NextFunction) => {
         console.log("controller uploading file ");
+
+        if ( ! req.file ) {
+            console.log ("No file uploaded");
+            return next( new FileUploadError('Select a file before pressing "Convert to Text"'));
+        }
         console.log(req.file);
 
         const filename = req.file?.originalname ?? "Unknown";
@@ -24,7 +30,7 @@ export class OcrController {
         const results = await this.ocrService.imageToText(req.file);
         console.log("average confidence level [" + results.average_confidence_score + "] ");
 
-        console.log("result " + results.result_code);
+        console.log("result code [" + results.result_code + "] Web Error Message [" + results.web_error_message + "]");
         if (results.result_code == 0) {
             res.render("converted-text", {results: results, filename: filename});
         } else {
