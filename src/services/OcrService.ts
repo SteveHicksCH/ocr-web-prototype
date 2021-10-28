@@ -1,7 +1,7 @@
 import  ExtractTextResultDto from "../models/ExtractTextResultDto"
 import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
 import FormData = require('form-data');
-import {OcrApiError} from "../utils/OcrApiError";
+import { StatusCodes } from 'http-status-codes';
 
 
 export class OcrService {
@@ -48,9 +48,12 @@ export class OcrService {
             console.log("Completed post request " + new Date().toLocaleTimeString());
         }, (error) => {
             console.log("Completed post request (ERRORS) " + new Date().toLocaleTimeString());
+            console.log("Error Response Code", error.response.status);
             let errorMessage = "OCR Server Error";
             if (error.code === 'ECONNABORTED') {
                 errorMessage = "Timeout calling OCR Api (to convert Image to Text)";
+            } else if (error.response!.status === StatusCodes.SERVICE_UNAVAILABLE) {
+                errorMessage = "OCR Api is currently overloaded - please try again later";
             } else {
                 console.log(error); 
             }
