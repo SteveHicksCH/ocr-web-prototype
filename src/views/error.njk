@@ -16,7 +16,7 @@
 {% block content %}
     <h3 class="govuk-heading-xl">Error in converting text{{filename}}</h1>
 
-Error Code: {{ results.result_code  }}
+<p class="govuk-body-l">Error Message: {{ results.web_error_message  }}</p>
 
 
 {% endblock %}
