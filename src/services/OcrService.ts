@@ -1,15 +1,16 @@
 import  ExtractTextResultDto from "../models/ExtractTextResultDto"
-import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import axios, { AxiosInstance } from 'axios';
 import FormData = require('form-data');
 import { StatusCodes } from 'http-status-codes';
+
+import config from "../config";
 
 
 export class OcrService {
 
     private readonly axiosInstance: AxiosInstance;
-    private readonly uri_base = process.env.OCR_API_BASE_URL as string;
-    private readonly uri = this.uri_base + "/ocr-api/api/ocr/image/tiff/extractText";
-    private readonly ocrRequestTimeout = parseInt(process.env.OCR_REQUEST_TIMEOUT_SECONDS as string) * 1000;
+    private readonly uri = config.ocrApiBaseUrl + "/ocr-api/api/ocr/image/tiff/extractText";
+    private readonly ocrRequestTimeout = config.ocrRequestTimeoutSeconds * 1000;
 
 
     constructor() {
@@ -17,9 +18,10 @@ export class OcrService {
     }
 
     public async imageToText(uploadedFile: Express.Multer.File | undefined): Promise<ExtractTextResultDto> {
+
         const filename =  uploadedFile?.originalname ?? "unknown-filename";
         console.log("Service class uploading file");
-        console.log("filename" + uploadedFile);
+        console.log("filename" + filename);
         console.log("Using ocr-api endpoint for converting images to text at [" + this.uri + "] and Timeout Milliseconds [" + this.ocrRequestTimeout + "]");
 
         const formData = new FormData();
@@ -48,11 +50,11 @@ export class OcrService {
             console.log("Completed post request " + new Date().toLocaleTimeString());
         }, (error) => {
             console.log("Completed post request (ERRORS) " + new Date().toLocaleTimeString());
-            console.log("Error Response Code", error.response.status);
+            console.log(error.code); 
             let errorMessage = "OCR Server Error";
             if (error.code === 'ECONNABORTED') {
                 errorMessage = "Timeout calling OCR Api (to convert Image to Text)";
-            } else if (error.response!.status === StatusCodes.SERVICE_UNAVAILABLE) {
+            } else if (typeof error.response != 'undefined' &&  typeof error.response.status != 'undefined' &&  error.response.status === StatusCodes.SERVICE_UNAVAILABLE) {
                 errorMessage = "OCR Api is currently overloaded - please try again later";
             } else {
                 console.log(error); 
