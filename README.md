@@ -22,7 +22,6 @@ This Node.js application is based on the [Node Web Starter](https://github.com/c
     - [Static assets](#static-assets)
     - [Compiling the application](#compiling-the-application)
     - [Linting](#linting)
-    - [Testing](#testing)
     - [File Upload](#file-upload)
 
 ### Quick start
@@ -31,7 +30,7 @@ Install the dependencies
 
   `make init`
 
-If running behind a proxy server and using an OCR API in AWS - make sure that you do NOT have anything in your PROXY environmental variables
+If running behind a **proxy server** and using an OCR API in AWS - make sure that you do NOT have anything in your PROXY environmental variables
 
 And then start the application
 
@@ -41,13 +40,14 @@ Then go to [http://localhost:3000](http://localhost:3000).
 
 ### Environment Variables
 
-The following is a list of mandatory environment variables for the service to run:
+The following is a list of environment variables for the service to run:
 
 Name                                        | Description                                                               | Example Value
 ------------------------------------------- | ------------------------------------------------------------------------- | ------------------------
 OCR_REQUEST_TIMEOUT_SECONDS                 | Timeout in seconds when calling the OCR API                               | 300
 OCR_API_BASE_URL                            | URL to Restricted Word Api                                                | `http://localhost:8080`
-
+OCR_WEB_PORT                                | Application port number (defaults to 3000)                                | 3000 (default)
+NODE_ENV                                    | Node environment (defaults to "development")                              | development (default)
 
 ### Running the server
 
@@ -83,20 +83,6 @@ TypeScript compiles down the JavaScript code that eventually gets run via NodeJS
 
   `npm run lint`
 
-### Testing
-
-Tests can be found in the directory [src/test](./src/test). The framework used is [Jest](https://jestjs.io) along with [`Supertest`](https://github.com/visionmedia/supertest) to dispatch handlers that can have assertions made against the responses. Execute the following to run the tests;
-
-  `npm t`
-
 ### File Upload
 
 This is done using the `Multer` library (which is used within the Router since we only want it for one particular route).
-
-Stuff todo
-
-1. Validation of file size
-2. Error handler to display informative message to the user
-3. General review against other projects
-4. Limit number of concurrent file uploads (don't want to bog down OCR server)
-5. Jess tests
