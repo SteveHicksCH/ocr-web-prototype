@@ -45,7 +45,7 @@ The following is a list of environment variables for the service to run:
 Name                                        | Description                                                               | Example Value
 ------------------------------------------- | ------------------------------------------------------------------------- | ------------------------
 OCR_REQUEST_TIMEOUT_SECONDS                 | Timeout in seconds when calling the OCR API                               | 300
-OCR_API_BASE_URL                            | URL to Restricted Word Api                                                | `http://localhost:8080`
+OCR_API_BASE_URL                            | URL to cloud where the OCR Api is running                                 | `http://localhost:8080`
 OCR_WEB_PORT                                | Application port number (defaults to 3000)                                | 3000 (default)
 NODE_ENV                                    | Node environment (defaults to "development")                              | development (default)
 
